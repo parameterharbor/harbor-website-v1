@@ -6,7 +6,7 @@
 <title>Harbor AI — GPU Cluster Reliability</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -34,7 +34,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
@@ -80,7 +80,8 @@
   }
 
   .nav-logo-text {
-    font-size: 17px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text);
     letter-spacing: -0.02em;
@@ -100,6 +101,8 @@
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: color 0.2s;
+    line-height: 1.6;
+    padding-bottom: 1px;
   }
 
   .nav-links a:hover { color: var(--text); }
@@ -136,50 +139,51 @@
       linear-gradient(var(--border) 1px, transparent 1px),
       linear-gradient(90deg, var(--border) 1px, transparent 1px);
     background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
-    opacity: 0.5;
+    mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, black 20%, transparent 80%);
+    opacity: 0.3;
   }
 
   .hero-glow {
     position: absolute;
-    width: 700px;
-    height: 700px;
+    width: 600px;
+    height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(21,184,174,0.06) 0%, rgba(45,76,181,0.04) 50%, transparent 70%);
+    background: radial-gradient(circle, rgba(21,184,174,0.04) 0%, rgba(45,76,181,0.03) 50%, transparent 70%);
     top: 50%;
-    left: 50%;
+    left: 20%;
     transform: translate(-50%, -55%);
     pointer-events: none;
   }
 
   .hero-content {
     position: relative;
-    max-width: 900px;
+    max-width: 640px;
   }
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     color: var(--accent);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    border: 1px solid rgba(21,184,174,0.3);
-    padding: 5px 12px;
+    border: 1px solid rgba(21,184,174,0.2);
+    padding: 4px 10px;
     border-radius: 2px;
     margin-bottom: 2rem;
-    background: var(--accent-dim);
+    background: rgba(21,184,174,0.06);
   }
 
   .hero-badge::before {
     content: '';
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--accent);
     animation: pulse-dot 2s ease-in-out infinite;
+    flex-shrink: 0;
   }
 
   @keyframes pulse-dot {
@@ -188,28 +192,32 @@
   }
 
   .hero h1 {
-    font-size: clamp(2.8rem, 6vw, 5.2rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.035em;
-    color: #EAE6DC;
-    margin-bottom: 1.5rem;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #E8E4DA;
+    margin-bottom: 2rem;
   }
+
+  .hero h1 .plain { color: #E8E4DA; }
 
   .hero h1 em {
     font-style: normal;
-    background: linear-gradient(135deg, #15B8AE 0%, #2D4CB5 100%);
+    background: linear-gradient(120deg, #15B8AE 0%, #4A7FD4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .hero-sub {
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    max-width: 580px;
-    line-height: 1.7;
+    font-size: 1rem;
+    color: #8C9AB5;
+    max-width: 520px;
+    line-height: 1.75;
     margin-bottom: 2.5rem;
+    font-weight: 400;
   }
 
   .hero-actions {
@@ -284,8 +292,9 @@
   }
 
   .stat-value {
+    font-family: 'Inter Tight', sans-serif;
     font-size: 2rem;
-    font-weight: 800;
+    font-weight: 700;
     background: linear-gradient(135deg, #15B8AE, #2D4CB5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -325,17 +334,18 @@
   }
 
   .section-title {
+    font-family: 'Inter Tight', sans-serif;
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
-    color: #EAE6DC;
-    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #E8E4DA;
+    line-height: 1.15;
     margin-bottom: 1rem;
   }
 
   .section-body {
     font-size: 1rem;
-    color: var(--text-dim);
+    color: #8C9AB5;
     max-width: 580px;
     line-height: 1.75;
     margin-bottom: 3rem;
@@ -444,16 +454,18 @@
 
   .problem-text strong {
     display: block;
+    font-family: 'Inter Tight', sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
     color: var(--text);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
   }
 
   .problem-text span {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    line-height: 1.5;
+    font-size: 0.875rem;
+    color: #8C9AB5;
+    line-height: 1.6;
   }
 
   /* STACK */
@@ -546,6 +558,7 @@
   .layer-ml .stack-layer-icon { background: rgba(21,184,174,0.07); }
 
   .stack-layer-name {
+    font-family: 'Inter Tight', sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--text);
@@ -579,9 +592,10 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.04em;
-    padding: 3px 8px;
+    padding: 4px 8px 5px;
     border-radius: 3px;
     border: 1px solid;
+    line-height: 1.4;
   }
 
   .tag-teal { color: rgba(21,184,174,0.85); border-color: rgba(21,184,174,0.2); background: rgba(21,184,174,0.06); }
@@ -637,9 +651,10 @@
     gap: 8px;
     font-size: 13px;
     color: var(--text-dim);
-    padding: 5px 0;
+    padding: 6px 0 7px;
     border-bottom: 1px solid var(--border);
     font-family: 'JetBrains Mono', monospace;
+    line-height: 1.6;
   }
 
   .stack-signal-row:last-child { border-bottom: none; }
@@ -722,6 +737,7 @@
   .inference-card:hover::before { opacity: 1; }
 
   .inference-card-title {
+    font-family: 'Inter Tight', sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--text);
@@ -731,7 +747,7 @@
 
   .inference-card-body {
     font-size: 0.875rem;
-    color: var(--text-dim);
+    color: #8C9AB5;
     line-height: 1.65;
     margin-bottom: 1rem;
   }
@@ -803,16 +819,17 @@
   .how-icon-wrap svg { width: 20px; height: 20px; }
 
   .how-card h3 {
-    font-size: 1.05rem;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
     margin-bottom: 0.5rem;
   }
 
   .how-card p {
     font-size: 0.875rem;
-    color: var(--text-dim);
+    color: #8C9AB5;
     line-height: 1.65;
   }
 
@@ -912,16 +929,17 @@
   }
 
   .cta-box h2 {
+    font-family: 'Inter Tight', sans-serif;
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
-    color: #EAE6DC;
+    letter-spacing: -0.02em;
+    color: #E8E4DA;
     margin-bottom: 0.5rem;
   }
 
   .cta-box p {
     font-size: 0.9rem;
-    color: var(--text-dim);
+    color: #8C9AB5;
     max-width: 420px;
     line-height: 1.65;
   }
@@ -955,7 +973,7 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--surface);
-    padding: 0.6rem 0;
+    padding: 0.75rem 0;
   }
 
   .ticker-track {
@@ -974,6 +992,8 @@
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
+    line-height: 1.8;
+    padding-bottom: 2px;
   }
 
   .ticker-item .dot { width: 4px; height: 4px; border-radius: 50%; background: #FF6B35; flex-shrink: 0; }
@@ -1003,6 +1023,7 @@
   }
 
   .footer-logo {
+    font-family: 'Inter Tight', sans-serif;
     font-size: 14px;
     font-weight: 700;
     color: var(--text-dimmer);
@@ -1020,6 +1041,9 @@
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
     .hero { padding: 100px 1.5rem 60px; }
+    .hero-content { max-width: 100%; }
+    .hero h1 { font-size: clamp(2rem, 8vw, 3rem); line-height: 1.18; }
+    .hero-sub { font-size: 0.95rem; }
     .hero-stats { display: none; }
     .problem-section, .how-section { padding: 60px 1.5rem; }
     .problem-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -1049,7 +1073,7 @@
     <li><a href="#stack">stack</a></li>
     <li><a href="#inference">inference</a></li>
     <li><a href="#who">who it's for</a></li>
-    <li><a href="mailto:param@harborgpu.ai" class="nav-cta">get in touch</a></li>
+    <li><a href="mailto:param@harborgpu.ai" class="nav-cta">book a call</a></li>
   </ul>
 </nav>
 
@@ -1059,15 +1083,15 @@
   <div class="hero-glow"></div>
 
   <div class="hero-content">
-    <div class="hero-badge">GPU infrastructure reliability</div>
+    <div class="hero-badge">reliability for production GPU clusters</div>
     <h1>The <em>reliability layer</em><br>for production<br>GPU clusters.</h1>
     <p class="hero-sub">
-      Harbor correlates signals across your entire stack — hardware, network, and ML framework — to diagnose training failures and inference degradation in seconds instead of hours.
+      When your cluster fails, Harbor tells you why — in seconds. Cross-stack visibility across hardware, network, and ML framework in one causal timeline.
     </p>
     <div class="hero-actions">
       <a href="mailto:param@harborgpu.ai" class="btn-primary">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 2L8 8M14 2H10M14 2V6M7 3H3C2.44772 3 2 3.44772 2 4V13C2 13.5523 2.44772 14 3 14H12C12.5523 14 13 13.5523 13 13V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Talk to us
+        Walk through your last incident
       </a>
       <a href="#stack" class="btn-secondary">See how it works →</a>
     </div>
@@ -1123,28 +1147,28 @@
       <div class="section-label">The problem</div>
       <h2 class="section-title">Three layers.<br>No one watching all of them.</h2>
       <p class="section-body">
-        Whether a training job crashes or inference quietly degrades, your team opens three different dashboards — GPU metrics, network logs, framework traces — and manually connects the dots. The real culprit is almost always a cross-layer interaction that nobody can see.
+        GPU metrics, network logs, framework traces — three dashboards, no connection between them. Every failure turns into a manual investigation. The culprit is almost always a cross-layer interaction that none of your existing tools can see.
       </p>
       <ul class="problem-list">
         <li class="problem-item">
           <div class="problem-icon">01</div>
           <div class="problem-text">
-            <strong>Misattributed training failures</strong>
-            <span>70–80% of apparent GPU hardware failures are actually framework or network issues. Teams replace hardware that isn't broken and restart runs that were minutes from finishing.</span>
+            <strong>Failures get misattributed</strong>
+            <span>70–80% of apparent GPU hardware failures are actually framework or network issues. Teams replace hardware that isn't broken, restart runs that were minutes from finishing.</span>
           </div>
         </li>
         <li class="problem-item">
           <div class="problem-icon">02</div>
           <div class="problem-text">
-            <strong>Silent inference degradation</strong>
-            <span>Tokens per second quietly drops while GPU utilization looks normal. KV cache exhaustion, thermal throttling, and suboptimal batching hide behind healthy-looking dashboards.</span>
+            <strong>Inference degrades silently</strong>
+            <span>Throughput drops. Latency climbs. GPU utilization stays green. Your cluster looks fine while users notice the difference.</span>
           </div>
         </li>
         <li class="problem-item">
           <div class="problem-icon">03</div>
           <div class="problem-text">
-            <strong>Hours to diagnose NCCL timeouts</strong>
-            <span>The most common distributed training failure takes 2–6 hours to root-cause without cross-stack visibility. Harbor does it in under 60 seconds.</span>
+            <strong>Debugging costs hours</strong>
+            <span>A distributed training failure — NCCL timeout, rank hang, network flap — takes 2–6 hours to root-cause without cross-stack visibility. That's an expensive run wasted and a team pulled off other work.</span>
           </div>
         </li>
       </ul>
@@ -1190,8 +1214,8 @@
 <div class="stack-section" id="stack">
   <div class="stack-header">
     <div>
-      <div class="section-label">The stack</div>
-      <h2 class="section-title">Every layer.<br>One correlation engine.</h2>
+      <div class="section-label">How Harbor works</div>
+      <h2 class="section-title">One engine.<br>Every layer.</h2>
     </div>
     <span class="stack-hint">↑ click a layer to expand</span>
   </div>
@@ -1235,8 +1259,8 @@
               <div class="stack-signal-row"><span class="signal-dot"></span>PyTorch distributed rank hangs + gradient anomalies</div>
             </div>
             <div class="stack-insight insight-teal">
-              <strong class="strong-teal">Core wedge</strong>
-              A NCCL collective timeout looks like a training crash. A TTFT spike looks like a capacity problem. Without cross-layer correlation, teams spend hours guessing. Harbor traces both to their root cause — hardware event, network flap, or framework misconfiguration — in under 60 seconds.
+              <strong class="strong-teal">What you get</strong>
+              Training crash or TTFT spike — Harbor traces it to its root cause in under 60 seconds. Hardware event, network flap, or framework misconfiguration: you see the causal chain, not just the symptom.
             </div>
           </div>
         </div>
@@ -1281,7 +1305,7 @@
             </div>
             <div class="stack-insight insight-navy">
               <strong class="strong-navy">Why this matters</strong>
-              InfiniBand port flaps are transient — they last milliseconds and vanish from logs before anyone opens a terminal. Harbor's ring-buffer model captures the flap, timestamps it precisely, and correlates it forward to the NCCL timeout or TTFT spike it caused — in training and inference alike.
+              InfiniBand port flaps last milliseconds and vanish from logs before anyone opens a terminal. Harbor's ring-buffer model captures them, timestamps them, and correlates them forward to the NCCL timeout or latency spike they caused.
             </div>
           </div>
         </div>
@@ -1325,8 +1349,8 @@
               <div class="stack-signal-row"><span class="signal-dot"></span>Power draw anomalies per GPU</div>
             </div>
             <div class="stack-insight insight-teal">
-              <strong class="strong-teal">Deployment model</strong>
-              Rust DaemonSet at the OS/kernel layer. Ring-buffer push-on-fail keeps overhead under 1% CPU and 50MB RAM per node. Raw telemetry never leaves the node. Fully air-gapped deployment available. Ships as an executable + Helm/Terraform charts.
+              <strong class="strong-teal">Deployment</strong>
+              Rust DaemonSet at the OS/kernel layer. Under 1% CPU and 50MB RAM per node. Raw telemetry never leaves the node — aggregation runs inside your VPC. Air-gapped deployment available. Ships as an executable + Helm/Terraform charts.
             </div>
           </div>
         </div>
@@ -1342,8 +1366,8 @@
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M9 3L15 9L9 15" stroke="#15B8AE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div>
-        <div style="font-weight: 600; font-size: 0.9rem; color: var(--text); margin-bottom: 2px;">Cross-stack correlation engine</div>
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim);">Hardware → Network → Framework. One causal timeline. No manual log-surfing. No 10-person Zoom call.</div>
+        <div style="font-weight: 600; font-size: 0.9rem; color: var(--text); margin-bottom: 2px;">Hardware → Network → Framework</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim);">One causal timeline. No manual log-surfing. No 10-person escalation call.</div>
       </div>
     </div>
     <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
@@ -1365,13 +1389,13 @@
   <div class="section-label">Inference reliability</div>
   <h2 class="section-title">Your cluster looks healthy.<br>Your users disagree.</h2>
   <p class="section-body">
-    Training failures are loud — jobs crash, teams get paged. Inference failures are silent. Throughput erodes. Latency climbs. GPU utilization stays green while your model quietly serves users at half speed. Harbor makes the invisible visible.
+    Training failures are loud — jobs crash, teams get paged. Inference failures are quiet. Throughput drops. P99 climbs. GPU utilization stays green. Harbor surfaces what your dashboards miss.
   </p>
 
   <div class="inference-grid">
     <div class="inference-card">
       <div class="inference-card-title">KV cache visibility</div>
-      <div class="inference-card-body">KV cache exhaustion is one of the most common sources of inference degradation — and one of the hardest to diagnose without framework-layer instrumentation. Harbor tracks hit rates, eviction pressure, and sizing mismatches against your actual traffic shape.</div>
+      <div class="inference-card-body">Cache exhaustion is a common source of silent degradation that's invisible without framework-layer instrumentation. Harbor tracks hit rates, eviction pressure, and sizing mismatches against your actual traffic.</div>
       <div class="inference-metric-row">
         <span class="inference-metric">KV hit rate</span>
         <span class="inference-metric">eviction events</span>
@@ -1379,8 +1403,8 @@
       </div>
     </div>
     <div class="inference-card">
-      <div class="inference-card-title">TTFT + token throughput baselines</div>
-      <div class="inference-card-body">Harbor maintains rolling baselines for time-to-first-token, inter-token latency, and tokens per second — and alerts on statistically significant drift before your users notice. P99 degradation caught at the source, not in a support ticket.</div>
+      <div class="inference-card-title">TTFT + throughput baselines</div>
+      <div class="inference-card-body">Harbor maintains rolling baselines for time-to-first-token, inter-token latency, and tokens per second — and alerts on drift before your users notice. P99 degradation caught at the source, not in a support ticket.</div>
       <div class="inference-metric-row">
         <span class="inference-metric">TTFT drift</span>
         <span class="inference-metric">inter-token latency</span>
@@ -1388,8 +1412,8 @@
       </div>
     </div>
     <div class="inference-card">
-      <div class="inference-card-title">Thermal throttle → latency correlation</div>
-      <div class="inference-card-body">A GPU thermal throttle during inference doesn't crash anything. It just silently reduces compute throughput, showing up as a latency bump two minutes later. Harbor correlates hardware events to serving latency with sub-second precision.</div>
+      <div class="inference-card-title">Hardware → latency correlation</div>
+      <div class="inference-card-body">A GPU thermal throttle doesn't crash anything. It just silently cuts compute throughput, showing up as a latency bump two minutes later. Harbor correlates hardware events to serving latency with sub-second precision.</div>
       <div class="inference-metric-row">
         <span class="inference-metric">thermal events</span>
         <span class="inference-metric">latency correlation</span>
@@ -1397,8 +1421,8 @@
       </div>
     </div>
     <div class="inference-card">
-      <div class="inference-card-title">Batching + utilization efficiency</div>
-      <div class="inference-card-body">Overprovisioning for a single request type while other jobs queue. Bad batching that leaves GPU memory half-empty. Harbor surfaces utilization skew across SM, memory, and PCIe — so you get the throughput you're paying for.</div>
+      <div class="inference-card-title">Utilization efficiency</div>
+      <div class="inference-card-body">Overprovisioning for one request type while others queue. Batching that leaves GPU memory underused. Harbor surfaces utilization skew across SM, memory, and PCIe — so you get the throughput you're paying for.</div>
       <div class="inference-metric-row">
         <span class="inference-metric">SM utilization</span>
         <span class="inference-metric">memory skew</span>
@@ -1421,7 +1445,7 @@
           <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L12 7H17L13 11L14.5 16L10 13L5.5 16L7 11L3 7H8L10 2Z" stroke="#15B8AE" stroke-width="1.4" stroke-linejoin="round"/></svg>
         </div>
         <h3>Pre-deployment validation</h3>
-        <p>Before a training run or inference deployment starts, Harbor runs cross-stack health checks — topology verification, bandwidth baselines, memory error sweeps, KV cache sizing validation. Catch misconfigurations before they cost you a 6-hour run or a degraded rollout.</p>
+        <p>Harbor runs cross-stack health checks before any training run or inference deployment starts. Catch topology errors, bandwidth gaps, and misconfigured KV cache sizing before they cost you a 6-hour job.</p>
       </div>
       <div class="how-card">
         <div class="how-number">02 / DIAGNOSE</div>
@@ -1429,7 +1453,7 @@
           <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#6482E6" stroke-width="1.4"/><path d="M10 6V10L13 12" stroke="#6482E6" stroke-width="1.4" stroke-linecap="round"/></svg>
         </div>
         <h3>Live cross-stack monitoring</h3>
-        <p>During training and inference, Harbor correlates GPU hardware, network fabric, and ML framework events in real time. Training crash or silent inference degradation — you get a causal chain, not a wall of disconnected logs.</p>
+        <p>During training and inference, Harbor correlates hardware, network, and framework signals in real time. When something goes wrong, you get a causal chain — not a wall of disconnected logs.</p>
       </div>
       <div class="how-card">
         <div class="how-number">03 / REMEDIATE</div>
@@ -1437,7 +1461,7 @@
           <svg viewBox="0 0 20 20" fill="none"><path d="M5 10L8.5 13.5L15 7" stroke="#22D07A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <h3>Actionable remediation</h3>
-        <p>Harbor doesn't just tell you what failed — it tells you what to do. Targeted, operator-level guidance that a software-focused ML engineer can act on without a hardware background. Automated remediation on the roadmap.</p>
+        <p>Harbor tells you what failed and what to do about it. Operator-level guidance a software-focused ML engineer can act on — no hardware background required. Automated remediation on the roadmap.</p>
       </div>
     </div>
   </div>
@@ -1447,7 +1471,7 @@
 <div class="icp-section" id="who">
   <div class="section-label">Who it's for</div>
   <h2 class="section-title">Built for teams<br>who own their infra.</h2>
-  <p class="section-body">Harbor is purpose-built for ML infrastructure engineers at AI-native companies running dedicated GPU clusters — bare metal, neo-cloud, or self-managed Kubernetes. If your team gets paged when a training job fails, Harbor is for you.</p>
+  <p class="section-body">Harbor is built for ML infrastructure engineers at AI-native companies running dedicated GPU clusters. If your team gets paged when something breaks, Harbor is for you.</p>
 
   <div class="icp-full-card">
     <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px;">
@@ -1455,19 +1479,16 @@
       You're running dedicated GPU infrastructure
     </div>
     <ul>
-      <li>Running bare metal, CoreWeave, Lambda Labs, or self-managed Kubernetes GPU clusters</li>
-      <li>Your team owns cluster health — you get paged when training jobs fail or inference degrades</li>
-      <li>ML engineers are software-focused and dread hardware-level debugging sessions</li>
-      <li>Spending hours on 10-person escalation calls to root-cause a GPU or network failure</li>
-      <li>Inference latency and throughput are business metrics — silent degradation costs you</li>
+      <li>Bare metal, CoreWeave, Lambda Labs, or self-managed Kubernetes — you own the cluster</li>
+      <li>Your team gets paged when training fails or inference degrades</li>
+      <li>A single lost training run or degraded inference window costs real money</li>
+      <li>Your current tooling shows you that something is wrong, but not why</li>
       <li>Data privacy or compliance requirements demand on-premises or air-gapped deployment</li>
-      <li>Operating at a scale where a single lost training run or degraded inference window costs real money</li>
-      <li>Your team builds configurations; a separate team executes them — and debugging the gap is painful</li>
     </ul>
   </div>
 
   <div class="icp-qualifier">
-    <p><strong>The qualifying question</strong>When a training job fails or inference latency spikes, does your team get paged and dig into the logs — or does the platform handle it? If it's the former, Harbor is built for you.</p>
+    <p><strong>The qualifying question</strong>When a training job fails or inference latency spikes, does your team dig into the logs — or does the platform handle it? If it's the former, Harbor is built for you.</p>
   </div>
 </div>
 
@@ -1475,15 +1496,15 @@
 <div class="cta-section">
   <div class="cta-box">
     <div>
-      <h2>Your cluster deserves a<br>reliability layer.</h2>
-      <p>We're working with early design partners running dedicated GPU infrastructure. If that's you, let's talk. We'll start with your specific failure modes — training, inference, or both.</p>
+      <h2>See Harbor on<br>your failure mode.</h2>
+      <p>We're working with early design partners on dedicated GPU infrastructure. Bring us your last incident — training or inference — and we'll show you what Harbor would have caught.</p>
     </div>
     <div class="cta-right">
       <a href="mailto:param@harborgpu.ai" class="btn-primary" style="font-size: 14px; padding: 14px 28px;">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 2L8 8M14 2H10M14 2V6M7 3H3C2.44772 3 2 3.44772 2 4V13C2 13.5523 2.44772 14 3 14H12C12.5523 14 13 13.5523 13 13V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        param@harborgpu.ai
+        Book a design partner call
       </a>
-      <a href="mailto:param@harborgpu.ai" class="cta-email">or just send an email →</a>
+      <a href="mailto:param@harborgpu.ai" class="cta-email">param@harborgpu.ai →</a>
     </div>
   </div>
 </div>
