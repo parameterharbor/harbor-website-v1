@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Harbor AI — GPU Cluster Reliability</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAABuElEQVR4nO2UzSuEQRzHvzO7m7VI4ebigIsD4ajEwbuTOHnZ/Ak4cJokpUTaouTgQsmTgxLFQS605SXlLRc5rLRrLc/u8jzPemYcUCsOz/O0FD2fyzT9fvOd70wzX8DGxsbmL8MYo4wx+rubCkEhBPlSEIIwIUyb+Spk2AmjfZ21+Y/qc5p8Jl9JHR26ZS1DvJ/au7tR7t3bLAKAFv/qdqt/dQoAuvxbxT3+tbLkXiM4DRuQJApAvw6E59xOx0q9tJijhFXkEedF09LCaDQUgawo9QAqP3pTbOBtUALxBKfg6dkZqhKMFQQIGcn0uGaiwfuEonM9uTe1Bt55CT3fw+UZrDi5LTwrygbhSBSe8+mDPHrJtae9T24NYOLVvomqgXguuYttTMz2P4RO7+puz4MNPl9vRITkde1GyTVzGMDCDdCodvQQ4d7qrtFGovIw4Vyt6R5rjsZ4m8elz5vVM/MNCcCIWC4h5fMnY3FZH9AUFSCA252GjCzn+P56yRAhpwIYFgBEqg0krxGllQOdmsarHJRQBxU7x4eTix81C5pm+SZ+LUay9SREu+PzXPrhJLSxsbH5r7wCGXixOquePCwAAAAASUVORK5CYII=">
+<link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAABuElEQVR4nO2UzSuEQRzHvzO7m7VI4ebigIsD4ajEwbuTOHnZ/Ak4cJokpUTaouTgQsmTgxLFQS605SXlLRc5rLRrLc/u8jzPemYcUCsOz/O0FD2fyzT9fvOd70wzX8DGxsbmL8MYo4wx+rubCkEhBPlSEIIwIUyb+Spk2AmjfZ21+Y/qc5p8Jl9JHR26ZS1DvJ/au7tR7t3bLAKAFv/qdqt/dQoAuvxbxT3+tbLkXiM4DRuQJApAvw6E59xOx0q9tJijhFXkEedF09LCaDQUgawo9QAqP3pTbOBtUALxBKfg6dkZqhKMFQQIGcn0uGaiwfuEonM9uTe1Bt55CT3fw+UZrDi5LTwrygbhSBSe8+mDPHrJtae9T24NYOLVvomqgXguuYttTMz2P4RO7+puz4MNPl9vRITkde1GyTVzGMDCDdCodvQQ4d7qrtFGovIw4Vyt6R5rjsZ4m8elz5vVM/MNCcCIWC4h5fMnY3FZH9AUFSCA252GjCzn+P56yRAhpwIYFgBEqg0krxGllQOdmsarHJRQBxU7x4eTix81C5pm+SZ+LUay9SREu+PzXPrhJLSxsbH5r7wCGXixOquePCwAAAAASUVORK5CYII=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -1470,7 +1472,7 @@
 <!-- WHO IT'S FOR -->
 <div class="icp-section" id="who">
   <div class="section-label">Who it's for</div>
-  <h2 class="section-title">Built for teams<br>who own their infra.</h2>
+  <h2 class="section-title">Built for teams running<br>their own GPU clusters.</h2>
   <p class="section-body">Harbor is built for ML infrastructure engineers at AI-native companies running dedicated GPU clusters. If your team gets paged when something breaks, Harbor is for you.</p>
 
   <div class="icp-full-card">
@@ -1479,7 +1481,7 @@
       You're running dedicated GPU infrastructure
     </div>
     <ul>
-      <li>Bare metal, CoreWeave, Lambda Labs, or self-managed Kubernetes — you own the cluster</li>
+      <li>Across bare metal, neo-cloud, and self-managed clusters</li>
       <li>Your team gets paged when training fails or inference degrades</li>
       <li>A single lost training run or degraded inference window costs real money</li>
       <li>Your current tooling shows you that something is wrong, but not why</li>
