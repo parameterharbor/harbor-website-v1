@@ -615,6 +615,30 @@
   }
   .cost-left p{ color: var(--ink-2); font-size: 16px; line-height: 1.6; max-width: 480px; }
 
+  /* two-card cost layout (training + inference) */
+  .cost-head-wrap{ max-width: 820px; margin-bottom: 36px; }
+  .cost-title{
+    font-family: var(--mono); font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 42px);
+    line-height: 1.08; letter-spacing: -0.02em;
+    margin: 0 0 16px;
+  }
+  .cost-title em{
+    font-style: normal;
+    color: transparent;
+    background: linear-gradient(92deg, var(--ok), var(--ok-2));
+    -webkit-background-clip: text; background-clip: text;
+  }
+  .cost-lede{
+    color: var(--ink-2); font-size: 16px; line-height: 1.6;
+    max-width: 720px; margin: 0;
+  }
+  .cost-grid{
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px; align-items: stretch;
+  }
+  @media (max-width: 900px){ .cost-grid{ grid-template-columns: 1fr; } }
+
   .cost-card{
     background: var(--panel);
     border: 1px solid var(--line);
@@ -803,7 +827,7 @@
       <a href="#problem">problem</a>
       <a href="#how">how it works</a>
       <a href="#icp">who it's for</a>
-      <a class="cta" href="/cdn-cgi/l/email-protection#ef9f8e9d8e82af878e9d8d809d889f9ac18e86">Contact <span class="caret">→</span></a>
+      <a class="cta" href="/cdn-cgi/l/email-protection#8fffeefdeee2cfe7eefdede0fde8fffaa1eee6">Contact <span class="caret">→</span></a>
     </div>
   </div>
 </nav>
@@ -816,16 +840,17 @@
       <span class="eyebrow"><span class="dot"></span>[ THE RELIABILITY LAYER FOR PRODUCTION GPU CLUSTERS ]</span>
 
       <h1 class="display">
-        Cluster broke?<br/>
+        Training failed?<br/>
+        Inference slow?<br/>
         Harbor tells you <span class="why">why</span>.
       </h1>
 
       <p class="sub">
-        Cross-stack correlation across GPU hardware, network fabric, and ML framework. Time-to-hypothesis under 60 seconds, not six hours.
+        Failures and degradations. Training and inference. One causal timeline across GPU hardware, network fabric, and ML framework — root cause in seconds, not hours.
       </p>
 
       <div class="cta-row">
-        <a class="btn primary" href="/cdn-cgi/l/email-protection#0d7d6c7f6c604d656c7f6f627f6a7d78236c64">
+        <a class="btn primary" href="/cdn-cgi/l/email-protection#b2c2d3c0d3dff2dad3c0d0ddc0d5c2c79cd3db">
           Talk to founders <span class="caret">→</span>
         </a>
         <a class="btn ghost" href="#live">
@@ -834,8 +859,8 @@
       </div>
 
       <div class="hero-meta">
-        <span>cloud, on-prem, air-gapped</span>
         <span>8 to 1000+ gpus</span>
+        <span>training and inference</span>
         <span>built by ex-azure ai infra</span>
       </div>
     </div>
@@ -999,47 +1024,47 @@
         <h4>[ prevent ]</h4>
         <p class="metric">Catch a meaningful share of failures before the job starts.</p>
         <div class="sep"></div>
-        <p>Pre-deployment validation across GPU topology, driver configs, fabric health, and framework version compatibility.</p>
+        <p>Pre-deployment validation across GPU topology, driver configs, fabric health, and framework compatibility. For training jobs and inference deployments alike.</p>
       </article>
       <article class="pillar">
         <div class="idx">02 / diagnose</div>
         <h4>[ diagnose ]</h4>
-        <p class="metric">Root cause in a single page, not a 2–6 hour debugging session.</p>
+        <p class="metric">Root cause in seconds. Failure or degradation.</p>
         <div class="sep"></div>
-        <p>Cross-stack correlation engine surfaces the causal chain across hardware, network, and framework in one view.</p>
+        <p>Cross-stack correlation turns a 2–6 hour debugging session into a single page. Whether the job crashed or your p99 latency drifted last Tuesday.</p>
       </article>
       <article class="pillar">
         <div class="idx">03 / remediate</div>
         <h4>[ remediate ]</h4>
         <p class="metric">Self-healing workflows, trusted fixes, automated rollback.</p>
         <div class="sep"></div>
-        <p>Validated patterns applied instantly. Your on-call sleeps through the night.</p>
+        <p>Validated patterns applied instantly. Failures contained, degradations resolved, your on-call sleeps through the night.</p>
       </article>
     </div>
   </section>
 
   <!-- COST EVIDENCE -->
   <section class="sec wrap" id="cost">
-    <div class="cost">
-      <div class="cost-left">
-        <div class="sec-label">what this actually costs you</div>
-        <h2>One collective timeout. One week of silent burn. <em>This is the cost</em> Harbor removes.</h2>
-        <p>Most teams running dedicated GPU fleets hit an NCCL collective timeout or an inference SLO breach at least once a week. Most don't measure the real cost. We did. Example below: a mid-sized H100 cluster running training and inference.</p>
-      </div>
+    <div class="cost-head-wrap">
+      <div class="sec-label">what this actually costs you</div>
+      <h2 class="cost-title">Two incident classes. <em>Both are silent.</em> Both compound.</h2>
+      <p class="cost-lede">Training clusters lose time to crashes. Inference fleets lose money to drift. Most teams measure neither. We did. Examples below, using conservative public rates.</p>
+    </div>
 
-      <aside class="cost-card" aria-label="Cost of one NCCL timeout">
+    <div class="cost-grid">
+      <aside class="cost-card" aria-label="Training incident example">
         <div class="cost-head">
-          <span>incident.model &nbsp;// example: 64× H100</span>
+          <span>incident.training &nbsp;// 64× H100</span>
           <span class="tag">nccl: collective timeout</span>
         </div>
         <div class="cost-body">
           <div class="cost-rows">
-            <div class="row"><span class="k">cluster (example)</span><span class="v">64× H100 · training + inference</span></div>
+            <div class="row"><span class="k">cluster (example)</span><span class="v">64× H100 · training</span></div>
             <div class="row"><span class="k">idle time (conservative)</span><span class="v">2.5 h × 64 gpu</span></div>
             <div class="row"><span class="k">idle time (aggressive)</span><span class="v">6.0 h × 64 gpu</span></div>
             <div class="row"><span class="k">gpu-hour rate</span><span class="v">≈ $30 / gpu-h</span></div>
             <div class="row"><span class="k">engineer time</span><span class="v">2–4 ic × 3–5 h</span></div>
-            <div class="row"><span class="k">lost work</span><span class="v">1 training step / SLO breach</span></div>
+            <div class="row"><span class="k">lost work</span><span class="v">1 training step</span></div>
           </div>
           <div class="cost-total">
             <div class="cell cons">
@@ -1051,7 +1076,35 @@
               <div class="v">$18,000</div>
             </div>
           </div>
-          <p class="cost-note">production teams report this incident class weekly. annualized: $350K to $900K per fleet.</p>
+          <p class="cost-note">production teams hit this weekly. annualized: $350K to $900K per fleet.</p>
+        </div>
+      </aside>
+
+      <aside class="cost-card" aria-label="Inference incident example">
+        <div class="cost-head">
+          <span>incident.inference &nbsp;// 16× H100</span>
+          <span class="tag">vllm: throughput drift</span>
+        </div>
+        <div class="cost-body">
+          <div class="cost-rows">
+            <div class="row"><span class="k">cluster (example)</span><span class="v">16× H100 · production inference</span></div>
+            <div class="row"><span class="k">degradation</span><span class="v">30% throughput drop, 5d undetected</span></div>
+            <div class="row"><span class="k">over-provisioned</span><span class="v">+6× H100 to compensate</span></div>
+            <div class="row"><span class="k">gpu-hour rate</span><span class="v">≈ $30 / gpu-h</span></div>
+            <div class="row"><span class="k">engineer time</span><span class="v">2 ic × 8 h diagnosis</span></div>
+            <div class="row"><span class="k">slo impact</span><span class="v">p99 latency breach</span></div>
+          </div>
+          <div class="cost-total">
+            <div class="cell cons">
+              <div class="k">conservative</div>
+              <div class="v">$22,000</div>
+            </div>
+            <div class="cell agg">
+              <div class="k">aggressive</div>
+              <div class="v">$60,000</div>
+            </div>
+          </div>
+          <p class="cost-note">inference degradations are silent. they compound. harbor surfaces them in seconds.</p>
         </div>
       </aside>
     </div>
@@ -1097,18 +1150,18 @@
   <section class="final wrap" id="contact">
     <div class="sec-label">contact</div>
     <p class="ask">Running your own GPU cluster? <em>Let's talk.</em></p>
-    <a class="mail" href="/cdn-cgi/l/email-protection#62120310030f220a0310000d100512174c030b"><span class="__cf_email__" data-cfemail="552534273438153d3427373a273225207b343c">[email&#160;protected]</span></a>
+    <a class="mail" href="/cdn-cgi/l/email-protection#95e5f4e7f4f8d5fdf4e7f7fae7f2e5e0bbf4fc"><span class="__cf_email__" data-cfemail="ddadbcafbcb09db5bcafbfb2afbaada8f3bcb4">[email&#160;protected]</span></a>
   </section>
 </main>
 
 <footer class="wrap">
   <div>harbor <span class="sep">//</span> harborgpu.ai <span class="sep">//</span> built for the on-call</div>
   <div class="foot-links">
-    <a href="/cdn-cgi/l/email-protection#750514071418351d1407171a071205005b141c4a0600171f101601481d1407171a07504745111a160650474507100400100601">docs</a>
+    <a href="/cdn-cgi/l/email-protection#b2c2d3c0d3dff2dad3c0d0ddc0d5c2c79cd3db8dc1c7d0d8d7d1c68fdad3c0d0ddc0978082d6ddd1c1978082c0d7c3c7d7c1c6">docs</a>
     <span class="sep">·</span>
-    <a href="/cdn-cgi/l/email-protection#23534251424e634b4251414c514453560d424a1c505641494640571e4b4251414c51061113404b424d44464f4c44">changelog</a>
+    <a href="/cdn-cgi/l/email-protection#a5d5c4d7c4c8e5cdc4d7c7cad7c2d5d08bc4cc9ad6d0c7cfc0c6d198cdc4d7c7cad7809795c6cdc4cbc2c0c9cac2">changelog</a>
     <span class="sep">·</span>
-    <a href="/cdn-cgi/l/email-protection#30405142515d70585142525f425740451e51590f4345525a5553440d585142525f4215020053514255554243">careers</a>
+    <a href="/cdn-cgi/l/email-protection#31415043505c71595043535e435641441f50580e4244535b5452450c595043535e4314030152504354544342">careers</a>
   </div>
   <div>© 2026 harbor, inc.</div>
 </footer>
