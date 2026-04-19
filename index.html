@@ -811,6 +811,51 @@
     background: color-mix(in oklab, var(--warn) 5%, var(--panel-2));
   }
 
+  /* remediation beats */
+  .corr-foot .annot.is-rem .k{ color: var(--ok); }
+  .corr-foot.resolved{
+    background: color-mix(in oklab, var(--ok) 5%, var(--panel-2));
+    transition: background .6s ease;
+  }
+  .block.crit.resolved{
+    transition: background 1s ease, border-color 1s ease;
+    background: color-mix(in oklab, var(--ok) 22%, transparent);
+    border-color: color-mix(in oklab, var(--ok) 70%, transparent);
+  }
+  .block.crit.resolved .lbl{ color: var(--ok); transition: color 1s ease; }
+
+  /* counter stat in corr-foot timer */
+  .corr-foot .timer .stat{
+    color: var(--ink-4); font-size: 11px; letter-spacing: 0.02em;
+    border-right: 1px solid var(--line);
+    padding-right: 10px;
+  }
+  @media (max-width: 720px){
+    .corr-foot .timer .stat{
+      border-right: 0; padding-right: 0; display: block;
+    }
+    .corr-foot .timer{ flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+
+  /* 70% poster third supporting line */
+  .poster p.remediate-note{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-4);
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  /* remediate section prose */
+  .remediate-prose{
+    font-family: var(--sans);
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 760px;
+    margin: 4px 0 0;
+  }
+
 </style>
 </head>
 
@@ -827,7 +872,7 @@
       <a href="#problem">problem</a>
       <a href="#how">how it works</a>
       <a href="#icp">who it's for</a>
-      <a class="cta" href="/cdn-cgi/l/email-protection#07776675666a476f667565687560777229666e">Contact <span class="caret">→</span></a>
+      <a class="cta" href="/cdn-cgi/l/email-protection#2f5f4e5d4e426f474e5d4d405d485f5a014e46">Contact <span class="caret">→</span></a>
     </div>
   </div>
 </nav>
@@ -840,9 +885,8 @@
       <span class="eyebrow"><span class="dot"></span>[ THE RELIABILITY LAYER FOR PRODUCTION GPU CLUSTERS ]</span>
 
       <h1 class="display">
-        Training failed?<br/>
-        Inference slow?<br/>
-        Harbor tells you <span class="why">why</span>.
+        Training failed? Inference slow?<br/>
+        Harbor <span class="why">finds it</span>. <span class="why">Fixes it</span>.
       </h1>
 
       <p class="sub">
@@ -850,7 +894,7 @@
       </p>
 
       <div class="cta-row">
-        <a class="btn primary" href="/cdn-cgi/l/email-protection#0979687b68644961687b6b667b6e797c276860">
+        <a class="btn primary" href="/cdn-cgi/l/email-protection#adddccdfccc0edc5ccdfcfc2dfcaddd883ccc4">
           Talk to founders <span class="caret">→</span>
         </a>
         <a class="btn ghost" href="#live">
@@ -913,7 +957,8 @@
             <span class="k">// nominal</span> &nbsp; all lanes green · cluster 32× gpu · workload: training + inference
           </div>
           <div class="timer">
-            t+<b id="corr-t">00:00:00</b>
+            <span class="stat" id="corr-stat">incidents resolved: 0 · patterns in library: 247</span>
+            <span class="tpart">t+<b id="corr-t">00:00:00</b></span>
           </div>
         </div>
       </div>
@@ -927,6 +972,7 @@
       <div class="num">70<sup>%</sup></div>
       <p class="lead">of apparent GPU hardware failures are actually ML framework or code issues.</p>
       <p class="sub">Signals live in three uncorrelated layers. Existing tools only see one. Harbor correlates all three.</p>
+      <p class="sub remediate-note">// recurring incidents match known patterns. Harbor applies the fix automatically.</p>
     </div>
     <div class="ascii-bot" aria-hidden="true">// ── ── ── ── ── ── pattern observed across enterprise GPU deployments ── ── ── ── ── ── //</div>
   </section>
@@ -1036,9 +1082,9 @@
       <article class="pillar">
         <div class="idx">03 / remediate</div>
         <h4>[ remediate ]</h4>
-        <p class="metric">Self-healing workflows, trusted fixes, automated rollback.</p>
+        <p class="metric">Fixes applied in seconds. Patterns saved forever.</p>
         <div class="sep"></div>
-        <p>Validated patterns applied instantly. Failures contained, degradations resolved, your on-call sleeps through the night.</p>
+        <p>Validated remediation runs via the Harbor daemon, with automatic rollback if the fix fails. Successful patterns join your fleet's library — the same incident, the second time, resolves itself.</p>
       </article>
     </div>
   </section>
@@ -1088,11 +1134,12 @@
         <div class="cost-body">
           <div class="cost-rows">
             <div class="row"><span class="k">cluster (example)</span><span class="v">16× H100 · production inference</span></div>
-            <div class="row"><span class="k">degradation</span><span class="v">30% throughput drop, 5d undetected</span></div>
-            <div class="row"><span class="k">over-provisioned</span><span class="v">+6× H100 to compensate</span></div>
+            <div class="row"><span class="k">degradation</span><span class="v">30% throughput drop, 5 days undetected</span></div>
+            <div class="row"><span class="k">over-provisioned capacity</span><span class="v">extra 6× H100 to compensate</span></div>
+            <div class="row"><span class="k">cause</span><span class="v">silent SLO drift, no page fired</span></div>
             <div class="row"><span class="k">gpu-hour rate</span><span class="v">≈ $30 / gpu-h</span></div>
-            <div class="row"><span class="k">engineer time</span><span class="v">2 ic × 8 h diagnosis</span></div>
-            <div class="row"><span class="k">slo impact</span><span class="v">p99 latency breach</span></div>
+            <div class="row"><span class="k">engineer time</span><span class="v">2 ic × 8h diagnosis (after customer complaint)</span></div>
+            <div class="row"><span class="k">SLO impact</span><span class="v">p99 latency breach</span></div>
           </div>
           <div class="cost-total">
             <div class="cell cons">
@@ -1104,9 +1151,33 @@
               <div class="v">$60,000</div>
             </div>
           </div>
-          <p class="cost-note">inference degradations are silent. they compound. harbor surfaces them in seconds.</p>
+          <p class="cost-note">// the most expensive inference incidents are the ones that don't trigger pages. harbor catches them when the signal first appears, not when a customer complains.</p>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- REMEDIATE -->
+  <section class="sec wrap" id="remediate">
+    <div class="sec-label">remediate</div>
+    <div class="install-wrap">
+      <div class="install-head">
+        <h2>Fixes are validated, applied, and saved.</h2>
+      </div>
+      <div class="config">
+        <div class="hd">
+          <span>lifecycle · remediation</span>
+          <b>harbor</b>
+        </div>
+        <div class="body">
+          <div class="line"><span class="k">detect</span><span class="v">cross-stack correlation surfaces root cause</span></div>
+          <div class="line"><span class="k">validate</span><span class="v">proposed fix tested against pattern library</span></div>
+          <div class="line"><span class="k">apply</span><span class="v">remediation runs via daemon, with rollback ready</span></div>
+          <div class="line"><span class="k">remember</span><span class="v">successful pattern saved to your fleet's library</span></div>
+        </div>
+      </div>
+      <p class="remediate-prose">Most expensive incidents aren't the loud ones. They're the throughput drifts, the cache thrashes, the latency creep that no one catches until a customer complains or a finance review flags the over-provisioning. Harbor catches them when the signal first appears, not when the dashboard turns red.</p>
+      <p class="remediate-prose">Every incident your team resolves makes the next one faster. Harbor's pattern library is fleet-specific, learns from your on-call, and applies validated fixes the next time the same signal appears. The longer Harbor runs in your environment, the less work your on-call does.</p>
     </div>
   </section>
 
@@ -1150,18 +1221,18 @@
   <section class="final wrap" id="contact">
     <div class="sec-label">contact</div>
     <p class="ask">Running your own GPU cluster? <em>Let's talk.</em></p>
-    <a class="mail" href="/cdn-cgi/l/email-protection#22524350434f624a4350404d504552570c434b"><span class="__cf_email__" data-cfemail="eb9b8a998a86ab838a998984998c9b9ec58a82">[email&#160;protected]</span></a>
+    <a class="mail" href="/cdn-cgi/l/email-protection#c3b3a2b1a2ae83aba2b1a1acb1a4b3b6eda2aa"><span class="__cf_email__" data-cfemail="7e0e1f0c1f133e161f0c1c110c190e0b501f17">[email&#160;protected]</span></a>
   </section>
 </main>
 
 <footer class="wrap">
   <div>harbor <span class="sep">//</span> harborgpu.ai <span class="sep">//</span> built for the on-call</div>
   <div class="foot-links">
-    <a href="/cdn-cgi/l/email-protection#245445564549644c4556464b564354510a454d1b5751464e414750194c4556464b56011614404b475701161456415551415750">docs</a>
+    <a href="/cdn-cgi/l/email-protection#f7879685969ab79f9685959885908782d9969ec88482959d929483ca9f9685959885d2c5c793989484d2c5c785928682928483">docs</a>
     <span class="sep">·</span>
-    <a href="/cdn-cgi/l/email-protection#1c6c7d6e7d715c747d6e7e736e7b6c69327d75236f697e76797f6821747d6e7e736e392e2c7f747d727b7970737b">changelog</a>
+    <a href="/cdn-cgi/l/email-protection#62120310030f220a0310000d100512174c030b5d111700080701165f0a0310000d10475052010a030c05070e0d05">changelog</a>
     <span class="sep">·</span>
-    <a href="/cdn-cgi/l/email-protection#f2829380939fb29a9380909d80958287dc939bcd81879098979186cf9a9380909d80d7c0c291938097978081">careers</a>
+    <a href="/cdn-cgi/l/email-protection#4c3c2d3e2d210c242d3e2e233e2b3c39622d25733f392e26292f3871242d3e2e233e697e7c2f2d3e29293e3f">careers</a>
   </div>
   <div>© 2026 harbor, inc.</div>
 </footer>
@@ -1198,10 +1269,12 @@
     var footEl   = document.getElementById('corr-foot');
     var annotEl  = document.getElementById('corr-annot');
     var timerEl  = document.getElementById('corr-t');
+    var statEl   = document.getElementById('corr-stat');
 
-    var CYCLE_MS = 15000;       // loop length
+    var CYCLE_MS = 18000;       // loop length (extended to show remediation beat + fade)
     var TRACK_DUR = CYCLE_MS;   // how much time a track represents
     var start = performance.now();
+    var incidentsResolved = 0;
 
     // Nominal event schedule (seeded deterministic-ish, but we'll regenerate per cycle)
     function seedNominalEvents(){
@@ -1231,6 +1304,7 @@
           { at: 7700,  lane: '__annot', text: '<span class="k">// anomaly detected</span> &nbsp; framework: nccl watchdog · rank 3' },
           { at: 9700,  lane: '__annot', text: '<span class="k">// correlating</span> &nbsp; hardware lane: gpu 3 thermal envelope exceeded' },
           { at: 11200, lane: '__annot', text: '<span class="k">root cause:</span> NCCL timeout correlated with GPU 3 thermal throttle <span class="t">— 00:00:47 to hypothesis</span>' },
+          { at: 13200, lane: '__remediation', text: '<span class="k">// remediation:</span> throttle GPU 3, redistribute rank → applied in <span class="t">00:00:12</span>. pattern saved.' },
         ],
         blocks: [
           { lane:'fw', from: 7400,  to: 11400, type: 'warn' },
@@ -1246,6 +1320,7 @@
           { at: 7500,  lane: '__annot', text: '<span class="k">// anomaly detected</span> &nbsp; framework: vllm kv cache occupancy 98% · rank 7' },
           { at: 9300,  lane: '__annot', text: '<span class="k">// correlating</span> &nbsp; hardware lane: gpu 7 vram pressure · hbm utilization 99%' },
           { at: 10800, lane: '__annot', text: '<span class="k">root cause:</span> vLLM KV cache exhaustion correlated with GPU 7 memory pressure <span class="t">— 00:00:32 to hypothesis</span>' },
+          { at: 12800, lane: '__remediation', text: '<span class="k">// remediation:</span> rebalance KV cache, reduce batch → applied in <span class="t">00:00:08</span>. pattern saved.' },
         ],
         blocks: [
           { lane:'fw', from: 7200,  to: 11000, type: 'warn' },
@@ -1261,6 +1336,7 @@
           { at: 6500,  lane: '__annot', text: '<span class="k">// anomaly detected</span> &nbsp; network: infiniband port flap · switch 2 / port 14' },
           { at: 8900,  lane: '__annot', text: '<span class="k">// correlating</span> &nbsp; network lane: collective straggler · rank 11 lagging' },
           { at: 11800, lane: '__annot', text: '<span class="k">root cause:</span> InfiniBand port flap correlated with collective straggler <span class="t">— 00:01:12 to hypothesis</span>' },
+          { at: 13800, lane: '__remediation', text: '<span class="k">// remediation:</span> failover port, reroute collective → applied in <span class="t">00:00:15</span>. pattern saved.' },
         ],
         blocks: [
           { lane:'nw', from: 6200,  to: 11800, type: 'warn' },
@@ -1312,8 +1388,8 @@
         tracks[k].events = [];
       });
       spawned = { hw: {}, nw: {}, fw: {}, script: {}, blocks: {} };
-      footEl.classList.remove('active');
-      annotEl.classList.remove('is-root','critical');
+      footEl.classList.remove('active','resolved');
+      annotEl.classList.remove('is-root','is-rem','critical');
       annotEl.innerHTML = '<span class="k">// nominal</span> &nbsp; all lanes green · cluster 32× gpu · workload: training + inference';
     }
 
@@ -1381,6 +1457,22 @@
             if (/root cause/i.test(step.text)){
               annotEl.classList.add('is-root');
               footEl.classList.add('active');
+            }
+          } else if (step.lane === '__remediation'){
+            annotEl.innerHTML = step.text;
+            annotEl.classList.remove('is-root');
+            annotEl.classList.add('is-rem');
+            footEl.classList.remove('active');
+            footEl.classList.add('resolved');
+            // fade red INCIDENT block(s) to green over ~1s
+            ['hw','nw','fw'].forEach(function(k){
+              var els = tracks[k].el.querySelectorAll('.block.crit');
+              els.forEach(function(b){ b.classList.add('resolved'); });
+            });
+            // increment resolved counter
+            incidentsResolved += 1;
+            if (statEl){
+              statEl.textContent = 'incidents resolved: ' + incidentsResolved + ' · patterns in library: 247';
             }
           } else {
             spawnDot(step.lane, step.at, step.type);
