@@ -732,6 +732,24 @@
   .config .body .line .v{ color: var(--ink); }
   .config .body .line .c{ color: var(--ink-4); }
 
+  /* -------- remediate prose (paragraph pair below the config block) -------- */
+  .remediate-prose{
+    max-width: 820px;
+    margin: 56px auto 0;
+  }
+  .remediate-prose p{
+    font-family: var(--sans);
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .remediate-prose p + p{ margin-top: 20px; }
+  @media (max-width: 720px){
+    .remediate-prose{ margin-top: 36px; }
+    .remediate-prose p{ font-size: 15px; }
+  }
+
   /* -------- about -------- */
   .about{
     max-width: 760px; margin: 0 auto; text-align: center;
@@ -827,7 +845,7 @@
       <a href="#problem">problem</a>
       <a href="#how">how it works</a>
       <a href="#icp">who it's for</a>
-      <a class="cta" href="/cdn-cgi/l/email-protection#2f5f4e5d4e426f474e5d4d405d485f5a014e46">Contact <span class="caret">→</span></a>
+      <a class="cta" href="mailto:param@harborgpu.ai">Contact <span class="caret">→</span></a>
     </div>
   </div>
 </nav>
@@ -840,9 +858,8 @@
       <span class="eyebrow"><span class="dot"></span>[ THE RELIABILITY LAYER FOR PRODUCTION GPU CLUSTERS ]</span>
 
       <h1 class="display">
-        Training failed?<br/>
-        Inference slow?<br/>
-        Harbor tells you <span class="why">why</span>.
+        Training failed? Inference slow?<br/>
+        Harbor <span class="why">finds it</span>. <span class="why">Fixes it</span>.
       </h1>
 
       <p class="sub">
@@ -850,7 +867,7 @@
       </p>
 
       <div class="cta-row">
-        <a class="btn primary" href="/cdn-cgi/l/email-protection#adddccdfccc0edc5ccdfcfc2dfcaddd883ccc4">
+        <a class="btn primary" href="mailto:param@harborgpu.ai">
           Talk to founders <span class="caret">→</span>
         </a>
         <a class="btn ghost" href="#live">
@@ -1088,10 +1105,11 @@
         <div class="cost-body">
           <div class="cost-rows">
             <div class="row"><span class="k">cluster (example)</span><span class="v">16× H100 · production inference</span></div>
-            <div class="row"><span class="k">degradation</span><span class="v">30% throughput drop, 5d undetected</span></div>
-            <div class="row"><span class="k">over-provisioned</span><span class="v">+6× H100 to compensate</span></div>
+            <div class="row"><span class="k">degradation</span><span class="v">30% throughput drop, 5 days undetected</span></div>
+            <div class="row"><span class="k">over-provisioned</span><span class="v">extra 6× H100 to compensate</span></div>
+            <div class="row"><span class="k">cause</span><span class="v">silent SLO drift, no page fired</span></div>
             <div class="row"><span class="k">gpu-hour rate</span><span class="v">≈ $30 / gpu-h</span></div>
-            <div class="row"><span class="k">engineer time</span><span class="v">2 ic × 8 h diagnosis</span></div>
+            <div class="row"><span class="k">engineer time</span><span class="v">2 ic × 8h diagnosis (after customer complaint)</span></div>
             <div class="row"><span class="k">slo impact</span><span class="v">p99 latency breach</span></div>
           </div>
           <div class="cost-total">
@@ -1104,9 +1122,38 @@
               <div class="v">$60,000</div>
             </div>
           </div>
-          <p class="cost-note">inference degradations are silent. they compound. harbor surfaces them in seconds.</p>
+          <p class="cost-note">the most expensive inference incidents are the ones that don't trigger pages. harbor catches them when the signal first appears, not when a customer complains.</p>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- REMEDIATE -->
+  <section class="sec wrap" id="remediate">
+    <div class="icp-wrap">
+      <div>
+        <div class="sec-label">remediate</div>
+        <h2>Fixes are validated, applied, and saved.</h2>
+        <p class="tail">Detection is half the work. Harbor closes the loop: validated remediation, automatic rollback, and a pattern library that learns from every incident.</p>
+      </div>
+
+      <div class="config">
+        <div class="hd">
+          <span>pipeline · detect → resolve</span>
+          <b>harbor</b>
+        </div>
+        <div class="body">
+          <div class="line"><span class="k">detect</span><span class="v">cross-stack correlation surfaces root cause</span></div>
+          <div class="line"><span class="k">validate</span><span class="v">proposed fix tested against pattern library</span></div>
+          <div class="line"><span class="k">apply</span><span class="v">remediation runs via daemon, with rollback ready</span></div>
+          <div class="line"><span class="k">remember</span><span class="v">successful pattern saved to your fleet's library</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="remediate-prose">
+      <p>Most expensive incidents aren't the loud ones. They're the throughput drifts, the cache thrashes, the latency creep that no one catches until a customer complains or a finance review flags the over-provisioning. Harbor catches them when the signal first appears, not when the dashboard turns red.</p>
+      <p>Every incident your team resolves makes the next one faster. Harbor's pattern library is fleet-specific, learns from your on-call, and applies validated fixes the next time the same signal appears. The longer Harbor runs in your environment, the less work your on-call does.</p>
     </div>
   </section>
 
@@ -1150,23 +1197,23 @@
   <section class="final wrap" id="contact">
     <div class="sec-label">contact</div>
     <p class="ask">Running your own GPU cluster? <em>Let's talk.</em></p>
-    <a class="mail" href="/cdn-cgi/l/email-protection#c3b3a2b1a2ae83aba2b1a1acb1a4b3b6eda2aa"><span class="__cf_email__" data-cfemail="7e0e1f0c1f133e161f0c1c110c190e0b501f17">[email&#160;protected]</span></a>
+    <a class="mail" href="mailto:param@harborgpu.ai">param@harborgpu.ai</a>
   </section>
 </main>
 
 <footer class="wrap">
   <div>harbor <span class="sep">//</span> harborgpu.ai <span class="sep">//</span> built for the on-call</div>
   <div class="foot-links">
-    <a href="/cdn-cgi/l/email-protection#f7879685969ab79f9685959885908782d9969ec88482959d929483ca9f9685959885d2c5c793989484d2c5c785928682928483">docs</a>
+    <a href="mailto:param@harborgpu.ai?subject=harbor%20docs%20request">docs</a>
     <span class="sep">·</span>
-    <a href="/cdn-cgi/l/email-protection#62120310030f220a0310000d100512174c030b5d111700080701165f0a0310000d10475052010a030c05070e0d05">changelog</a>
+    <a href="mailto:param@harborgpu.ai?subject=harbor%20changelog%20request">changelog</a>
     <span class="sep">·</span>
-    <a href="/cdn-cgi/l/email-protection#4c3c2d3e2d210c242d3e2e233e2b3c39622d25733f392e26292f3871242d3e2e233e697e7c2f2d3e29293e3f">careers</a>
+    <a href="mailto:param@harborgpu.ai?subject=harbor%20careers">careers</a>
   </div>
   <div>© 2026 harbor, inc.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script>
+<script>
   /* -------- nav scroll state -------- */
   (function(){
     var nav = document.getElementById('topnav');
