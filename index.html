@@ -214,11 +214,6 @@
   .about p.hiring a{ color: var(--ok); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: color-mix(in oklab, var(--ok) 50%, transparent); }
   .about p.hiring a:hover{ text-decoration-color: var(--ok); }
 
-  /* footer link stubs */
-  footer .foot-links{ display: flex; gap: 8px; align-items: center; }
-  footer .foot-links a{ color: var(--ink-3); transition: color .18s ease; }
-  footer .foot-links a:hover{ color: var(--ok); }
-
   /* install section */
   .install-wrap{ display: grid; grid-template-columns: 1fr; gap: 28px; }
   .install-head h2{
@@ -272,7 +267,7 @@
   }
 
   /* typography guardrails so nothing breaks viewport on small screens */
-  h1.display, .poster .num, .final .ask, .final .mail, .cost-left h2, .icp-wrap h2, .converge-caption, .pillar .metric{ overflow-wrap: break-word; word-break: break-word; hyphens: none; }
+  h1.display, .poster .num, .final .ask, .cost-left h2, .icp-wrap h2, .converge-caption, .pillar .metric{ overflow-wrap: break-word; word-break: break-word; hyphens: none; }
 
   /* mobile refinements */
   @media (max-width: 720px){
@@ -294,13 +289,12 @@
     .final{ padding: 80px 0 72px; }
     .about{ padding: 64px 0; }
     .final .ask{ font-size: 28px; }
-    .final .mail{ font-size: 20px; word-break: break-all; }
     .cost-total .cell .v{ font-size: 22px; }
+    .cost-total.single .cell .v{ font-size: 28px; }
     .config .body{ padding: 16px; font-size: 12px; }
     .config .body .line{ grid-template-columns: 1fr; gap: 0; line-height: 1.5; padding: 8px 0; border-bottom: 1px dashed var(--line); }
     .config .body .line:last-child{ border-bottom: 0; }
     .config .body .line .c{ display: block; margin-top: 2px; }
-    footer{ flex-direction: column; }
     .term .bar{ padding: 8px 10px; font-size: 10.5px; }
     .term .bar .title{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .lane{ padding: 10px 10px 10px 92px; }
@@ -381,18 +375,24 @@
     box-shadow: 0 0 0 2px color-mix(in oklab, var(--ok-dim) 25%, transparent);
     opacity: 0;
     animation: ev-in .35s ease-out forwards;
+    z-index: 2;
   }
   .ev.ok   { background: var(--ok);   box-shadow: 0 0 0 2px color-mix(in oklab, var(--ok)   30%, transparent); }
-  .ev.warn { background: var(--warn); box-shadow: 0 0 0 2px color-mix(in oklab, var(--warn) 30%, transparent); border-radius: 50%; }
+  .ev.warn { background: var(--warn); box-shadow: 0 0 0 2px color-mix(in oklab, var(--warn) 30%, transparent); border-radius: 50%; z-index: 3; }
   .ev.crit {
     background: var(--crit);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--crit) 30%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--crit) 40%, transparent), 0 0 0 5px color-mix(in oklab, var(--bg-1) 80%, transparent);
     width: 10px; height: 10px;
     animation: ev-in .35s ease-out forwards, crit-pulse 1.2s infinite ease-in-out .35s;
+    z-index: 4;
   }
   @keyframes ev-in{
     0%  { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
     100%{ opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+  @keyframes block-in{
+    0%  { opacity: 0; }
+    100%{ opacity: 1; }
   }
   @keyframes crit-pulse{
     0%,100%{ box-shadow: 0 0 0 2px color-mix(in oklab, var(--crit) 30%, transparent); }
@@ -404,7 +404,7 @@
     border-radius: 3px;
     background: color-mix(in oklab, var(--warn) 22%, transparent);
     border: 1px solid color-mix(in oklab, var(--warn) 60%, transparent);
-    opacity: 0; animation: ev-in .4s ease-out forwards;
+    opacity: 0; animation: block-in .4s ease-out forwards;
     overflow: hidden;
   }
   .block.crit{
@@ -687,6 +687,12 @@
     background: var(--bg-1);
     display:grid; grid-template-columns: 1fr 1fr; gap: 14px;
   }
+  .cost-total.single{
+    grid-template-columns: 1fr;
+    padding: 22px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px;
+  }
   .cost-total .cell .k{
     font-family: var(--mono); font-size: 10.5px; color: var(--ink-4);
     letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;
@@ -694,6 +700,15 @@
   .cost-total .cell .v{
     font-family: var(--mono); font-size: 28px; color: var(--ink); font-weight: 500;
     letter-spacing: -0.015em;
+  }
+  .cost-total.single .cell{
+    display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    width: 100%;
+  }
+  .cost-total.single .cell .k{ margin-bottom: 0; }
+  .cost-total.single .cell .v{
+    font-size: 34px;
+    color: var(--warn);
   }
   .cost-total .cell.agg .v{
     color: var(--warn);
@@ -822,18 +837,12 @@
     background: linear-gradient(92deg, var(--ok), var(--ok-2));
     -webkit-background-clip: text; background-clip: text;
   }
-  .final .mail{
-    display:inline-block;
-    font-family: var(--mono);
-    font-size: clamp(24px, 3.2vw, 44px);
-    color: var(--ink); text-decoration: underline;
-    text-decoration-color: color-mix(in oklab, var(--ok) 60%, transparent);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 8px;
-    letter-spacing: -0.01em;
-    transition: color .2s ease, text-decoration-color .2s ease;
+  .final .final-btn{
+    font-size: 15px;
+    padding: 16px 24px;
+    letter-spacing: 0.01em;
   }
-  .final .mail:hover{ color: var(--ok); text-decoration-color: var(--ok); }
+  .final .final-btn .caret{ font-size: 16px; }
   .final .tag{
     font-family: var(--mono); color: var(--ink-4); font-size: 12px;
     margin-top: 36px; letter-spacing: 0.05em;
@@ -846,7 +855,7 @@
     border-top: 1px solid var(--line);
     font-family: var(--mono); font-size: 11.5px; color: var(--ink-4);
     letter-spacing: 0.04em;
-    display:flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    display:flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px;
   }
   footer .sep{ color: var(--line-2); padding: 0 6px; }
 
@@ -904,10 +913,7 @@
 
       <div class="cta-row">
         <a class="btn primary" href="mailto:param@harborgpu.ai">
-          Talk to founders <span class="caret">→</span>
-        </a>
-        <a class="btn ghost" href="#live">
-          See a live incident <span class="caret">↓</span>
+          Talk to team <span class="caret">→</span>
         </a>
       </div>
 
@@ -1101,7 +1107,7 @@
     <div class="cost-head-wrap">
       <div class="sec-label">what this actually costs you</div>
       <h2 class="cost-title">Two incident classes. <em>Both are silent.</em> Both compound.</h2>
-      <p class="cost-lede">Training clusters lose time to crashes. Inference fleets lose money to drift. Most teams measure neither. We did. Examples below, using conservative public rates.</p>
+      <p class="cost-lede">Training clusters lose time to crashes. Inference fleets lose money to drift. Most teams measure neither. We did. Examples below, using public GPU-hour rates.</p>
     </div>
 
     <div class="cost-grid">
@@ -1113,23 +1119,18 @@
         <div class="cost-body">
           <div class="cost-rows">
             <div class="row"><span class="k">cluster (example)</span><span class="v">64× H100 · training</span></div>
-            <div class="row"><span class="k">idle time (conservative)</span><span class="v">2.5 h × 64 gpu</span></div>
-            <div class="row"><span class="k">idle time (aggressive)</span><span class="v">6.0 h × 64 gpu</span></div>
+            <div class="row"><span class="k">idle time</span><span class="v">6.0 h × 64 gpu</span></div>
             <div class="row"><span class="k">gpu-hour rate</span><span class="v">≈ $30 / gpu-h</span></div>
             <div class="row"><span class="k">engineer time</span><span class="v">2–4 ic × 3–5 h</span></div>
             <div class="row"><span class="k">lost work</span><span class="v">1 training step</span></div>
           </div>
-          <div class="cost-total">
-            <div class="cell cons">
-              <div class="k">conservative</div>
-              <div class="v">$6,800</div>
-            </div>
-            <div class="cell agg">
-              <div class="k">aggressive</div>
+          <div class="cost-total single">
+            <div class="cell">
+              <div class="k">per incident</div>
               <div class="v">$18,000</div>
             </div>
           </div>
-          <p class="cost-note">production teams hit this weekly. annualized: $350K to $900K per fleet.</p>
+          <p class="cost-note">production teams hit this weekly. annualized: ~$900K per fleet.</p>
         </div>
       </aside>
 
@@ -1148,13 +1149,9 @@
             <div class="row"><span class="k">engineer time</span><span class="v">2 ic × 8h diagnosis (after customer complaint)</span></div>
             <div class="row"><span class="k">slo impact</span><span class="v">p99 latency breach</span></div>
           </div>
-          <div class="cost-total">
-            <div class="cell cons">
-              <div class="k">conservative</div>
-              <div class="v">$22,000</div>
-            </div>
-            <div class="cell agg">
-              <div class="k">aggressive</div>
+          <div class="cost-total single">
+            <div class="cell">
+              <div class="k">per incident</div>
               <div class="v">$60,000</div>
             </div>
           </div>
@@ -1220,10 +1217,7 @@
   <section class="wrap about" id="about">
     <div class="sec-label" style="text-align:center;">about</div>
     <p>
-      Harbor is built by <b>Param Shah</b> (CEO) and <b>Sahaj Putcha</b> (CTO).
-    </p>
-    <p>
-      Param worked on GPU reliability at scale on Microsoft Azure's AI Infrastructure team. Sahaj worked on auto-triaging and automations at AWS. We built the correlation layer that should have existed.
+      Built by <b>Microsoft</b> and <b>Amazon</b> AI Infrastructure engineers. We built the correlation layer that should have existed.
     </p>
   </section>
 
@@ -1231,20 +1225,14 @@
   <section class="final wrap" id="contact">
     <div class="sec-label">contact</div>
     <p class="ask">Running your own GPU cluster? <em>Let's talk.</em></p>
-    <a class="mail" href="mailto:param@harborgpu.ai">param@harborgpu.ai</a>
+    <a class="btn primary final-btn" href="mailto:param@harborgpu.ai">
+      Talk to team <span class="caret">→</span>
+    </a>
   </section>
 </main>
 
 <footer class="wrap">
-  <div>harbor <span class="sep">//</span> harborgpu.ai <span class="sep">//</span> built for the on-call</div>
-  <div class="foot-links">
-    <a href="mailto:param@harborgpu.ai?subject=harbor%20docs%20request">docs</a>
-    <span class="sep">·</span>
-    <a href="mailto:param@harborgpu.ai?subject=harbor%20changelog%20request">changelog</a>
-    <span class="sep">·</span>
-    <a href="mailto:param@harborgpu.ai?subject=harbor%20careers">careers</a>
-  </div>
-  <div>© 2026 harbor, inc.</div>
+  <div>© 2026 Harbor, Inc.</div>
 </footer>
 
 <script>
@@ -1433,13 +1421,24 @@
       timerEl.textContent = fmtT(elapsed);
 
       // spawn nominal events as playhead passes them
+      // but skip any nominal dot that falls inside a block on that lane
       ['hw','nw','fw'].forEach(function(k){
         var list = nominal[k];
         for (var i = 0; i < list.length; i++){
           var ev = list[i];
-          var key = k + ':' + i;
           if (cycleT >= ev.t && !spawned[k][i]){
-            spawnDot(k, ev.t, ev.type);
+            // check if this time falls inside a block for this lane
+            var insideBlock = false;
+            for (var j = 0; j < current.blocks.length; j++){
+              var b = current.blocks[j];
+              if (b.lane === k && ev.t >= b.from - 120 && ev.t <= b.to + 120){
+                insideBlock = true;
+                break;
+              }
+            }
+            if (!insideBlock){
+              spawnDot(k, ev.t, ev.type);
+            }
             spawned[k][i] = true;
           }
         }
