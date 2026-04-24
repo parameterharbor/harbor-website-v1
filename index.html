@@ -122,11 +122,11 @@
   .btn.secondary:hover{ border-color:var(--ok-dim); background:var(--panel); }
 
   .hero{
-    min-height:720px; padding:86px 40px 56px;
+    min-height:640px; padding:80px 40px 30px;
     display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
-    gap:42px; align-items:start;
+    gap:42px; align-items:center;
   }
-  .hero-copy{ max-width:560px; padding-top:44px; }
+  .hero-copy{ max-width:560px; padding-top:0; }
   .hero-copy,.browser,.product-screen,.app-grid{ min-width:0; }
   .hero .eyebrow::before{ content:none; }
   .hero .eyebrow{
@@ -250,11 +250,32 @@
     display:grid; grid-template-columns:repeat(4, 1fr); gap:0;
   }
   .proof{
-    min-height:92px; display:flex; align-items:center; padding:22px 20px;
+    min-height:92px; display:flex; align-items:center; justify-content:flex-start; padding:22px 20px;
     border-right:1px solid var(--line); font-family:var(--mono); font-size:12px; color:var(--ink-2); line-height:1.55;
     overflow-wrap:anywhere;
+    text-align:left;
   }
   .proof:first-child{ border-left:1px solid var(--line); }
+  .proof-badge{
+    justify-content:center; gap:0; padding-inline:16px;
+  }
+  .proof-copy{
+    display:grid; gap:6px; min-width:0;
+  }
+  .proof-copy .k{
+    font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ok);
+  }
+  .proof-copy .v{
+    color:var(--ink); line-height:1.45; font-size:12px;
+  }
+  .proof-badge-mark{
+    flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center;
+    padding:6px; border-radius:10px; background:rgba(255,255,255,.04);
+    border:1px solid color-mix(in oklab, var(--line-2) 84%, white 16%);
+  }
+  .proof-badge-mark img{
+    display:block; width:122px; height:auto; border-radius:6px; background:#fff;
+  }
 
   .cards-3{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
   .card{
@@ -408,7 +429,7 @@
   .reveal.show{ opacity:1; transform:none; }
 
   @media (max-width:1120px){
-    .hero{ min-height:0; grid-template-columns:1fr; padding:86px 40px 58px; gap:32px; }
+    .hero{ min-height:0; grid-template-columns:1fr; padding:82px 40px 50px; gap:32px; align-items:start; }
     .hero-copy{ max-width:720px; padding-top:0; }
     .browser{ justify-self:stretch; max-width:none; }
     .app-grid{ grid-template-columns:1fr; }
@@ -460,6 +481,8 @@
     .metrics{ grid-template-columns:1fr; }
     .card,.price-card{ padding:20px; }
     .mid-cta .btn,.pricing-cta .btn,.final-cta .btn{ width:100%; }
+    .proof-badge{ align-items:center; justify-content:flex-start; }
+    .proof-badge-mark img{ width:104px; }
   }
 </style>
 </head>
@@ -574,10 +597,14 @@
 
   <section class="credibility">
     <div class="wrap proof-strip">
-      <div class="proof">Built by Microsoft and Amazon AI infrastructure engineers</div>
       <div class="proof">For bare metal, on-prem, and neo-cloud GPU clusters</div>
       <div class="proof">Designed for training and inference workloads</div>
       <div class="proof">Built for teams operating 8-1000+ GPUs</div>
+      <div class="proof proof-badge">
+        <span class="proof-badge-mark">
+          <img src="assets/nvidia-inception-program-badge.svg" alt="NVIDIA Inception Program badge" />
+        </span>
+      </div>
     </div>
   </section>
 
