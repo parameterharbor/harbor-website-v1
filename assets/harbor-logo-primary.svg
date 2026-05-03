@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300" role="img" aria-labelledby="title desc">
+  <title id="title">Harbor primary logo</title>
+  <desc id="desc">Primary Harbor logo with near-black icon pillars and harbor wordmark, plus muted teal bridge.</desc>
+  <g fill="none" fill-rule="evenodd">
+    <g transform="translate(80 48)">
+      <path fill="#0B0F1A" d="M17.8 0c3 0 5.4.7 8.1 2.2l55.7 32.2c4.5 2.7 6.8 6.7 6.8 12v69.8c0 5.3-2.3 9.3-6.8 12L54 144.1c-4.5 2.7-6.8 6.7-6.8 12v66.2c0 5.3-2.3 9.3-6.8 12L20.9 246c-4.6 2.7-9.1 0-9.1-5.3V6.1C11.8 2.2 14.1 0 17.8 0Z"/>
+      <path fill="#0B0F1A" d="M202.2 0c-3 0-5.4.7-8.1 2.2l-55.7 32.2c-4.5 2.7-6.8 6.7-6.8 12v69.8c0 5.3 2.3 9.3 6.8 12l27.6 15.9c4.5 2.7 6.8 6.7 6.8 12v66.2c0 5.3 2.3 9.3 6.8 12l19.5 11.7c4.6 2.7 9.1 0 9.1-5.3V6.1c0-3.9-2.3-6.1-6-6.1Z"/>
+      <path fill="#2F8F8B" d="M67.5 143.5 101 124.2c6-3.4 12-3.4 18 0l33.5 19.3c6 3.5 9 8.7 9 15.7v30.3l-43.2-21.8c-5.5-2.8-11.1-2.8-16.6 0l-43.2 21.8v-30.3c0-7 3-12.2 9-15.7Z"/>
+    </g>
+    <text x="330" y="190" fill="#0B0F1A" font-family="Avenir Next, Avenir, Montserrat, Proxima Nova, Arial Rounded MT Bold, Arial, sans-serif" font-size="146" font-weight="800" letter-spacing="-2">harbor</text>
+  </g>
+</svg>
